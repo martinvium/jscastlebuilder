@@ -12,11 +12,21 @@ var mapWidth = 30,
     $countdownTimeoutOption,
     $details,
     $selectedStructure,
-    countDown = new Date();
+    countDown = new Date(),
+    finder;
 
 function initGame($map) {
     buildLevel($map);
+    buildStructure(getTile(8, 10), $('#structures #treasury'));
+    buildStructure(getTile(9, 10), $('#structures #treasury'));
     buildStructure(getTile(10, 10), $('#structures #treasury'));
+    buildStructure(getTile(11, 10), $('#structures #treasury'));
+    buildStructure(getTile(12, 10), $('#structures #treasury'));
+    buildStructure(getTile(12, 9), $('#structures #treasury'));
+    buildStructure(getTile(12, 8), $('#structures #treasury'));
+    buildStructure(getTile(12, 7), $('#structures #treasury'));
+    buildStructure(getTile(12, 6), $('#structures #treasury'));
+    buildStructure(getTile(12, 5), $('#structures #treasury'));
     $countdownTimeoutOption = $('#countdown-timeout');
     $details = $('#details');
     $('#structures div').click(function(event) {
@@ -72,12 +82,19 @@ function tileClick(event) {
     if(! $selectedStructure) {
         return false;
     }
-    
-    if(isCountdown($tile) || ! isReachable($tile) || isTileExplored($tile)) {
+    console.debug('click', isCountdown($tile), ! isReachable($tile), isTileExplored($tile));
+    if(! isReachable($tile) || isTileExplored($tile)) {
         return false;
     }
     
-    return buildStructure($tile, $selectedStructure);
+    buildStructure($tile, $selectedStructure);
+    clearHighlight();
+    finder.findPath(0, 0, 10, 15);
+    return true;
+}
+
+function clearHighlight() {
+    $('#map .tile').html('');
 }
 
 function buildStructure($tile, $structure) {
@@ -237,6 +254,10 @@ PathFinder.prototype = {
     counter: 0,
     
     findPath: function(sx, sy, dx, dy) {
+        this.closed = [];
+        this.open = [];
+        this.counter = 0;
+        
         var nextNode = {x: sx, y: sy, h: 0};
         this.addOpenNodes([nextNode]);
         

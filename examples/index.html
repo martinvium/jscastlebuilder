@@ -44,7 +44,7 @@
             var $map = $('#map');
             initGame($map);
             
-            var finder = new PathFinder();
+            finder = new PathFinder();
             finder.isNode = function(x, y) {
                 var tile = getTile(x, y);
                 return (tile && tile.hasClass('grass'));
@@ -53,7 +53,8 @@
                 var tile = getTile(node.x, node.y, count);
                 tile.html(count);
             }
-            var path = finder.findPath(0, 0, 10, 15);
+            finder.findPath(0, 0, 10, 15);
+            $('#treasury').click();
         });
     </script>
 </html>
