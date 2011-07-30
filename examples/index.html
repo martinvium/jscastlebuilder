@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blood Diamonds</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="css/vanilla.css" />
+        <link rel="stylesheet" type="text/css" href="css/game.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="map"></div>
+        
+        <div id="next-round" class="ui-box">
+            <h2>Next Round</h2>
+            <div id="countdown"></div>
+        </div>
+        
+        <div id="structures" class="ui-box">
+            <h2>Structures</h2>
+            <div id="grass"><span class="value">5</span>&nbsp;<label>Demolish</label></div>
+            <div id="treasury"><span class="value">1000</span>&nbsp;<label>Treasury</label></div>
+            <div id="palisade"><span class="value">10</span>&nbsp;<label>Palisade</label></div>
+            <div id="wall"><span class="value">50</span>&nbsp;<label>Wall</label></div>
+            <div id="bullwark"><span class="value">250</span>&nbsp;<label>Bullwark</label></div>
+        </div>
+        
+        <div id="options" class="ui-box">
+            <h2>Options</h2>
+            <label>Countdown Timeout:</label>
+            <input id="countdown-timeout" value="500"/>
+        </div>
+        
+        <div id="details" class="ui-box" style="display: none">
+            <h2>Resource</h2>
+            <div class="tile"></div>
+            <label class="type"></label>
+        </div>
+    </body>
+    
+    <script type="text/javascript" src="js/game.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var $map = $('#map');
+            initGame($map);
+            
+            var finder = new PathFinder();
+            finder.isNode = getTile;
+            finder.highlightNode = function(node, count) {
+                var tile = getTile(node.x, node.y, count);
+                tile.html(count);
+            }
+            var path = finder.findPath(0, 0, 10, 15);
+        });
+    </script>
+</html>

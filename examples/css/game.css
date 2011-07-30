@@ -1,0 +1,120 @@
+body {
+    background-color: #222120;
+    font-family: verdana;
+}
+
+/***=Interface***/
+#map {
+    width: 630px;
+    position: absolute;
+    left: 200px;
+    top: 10px;
+}
+
+#next-round {
+    padding: 5px 10px;
+    position: fixed;
+    left: 10px;
+    top: 13px;
+}
+
+#structures {
+    padding: 5px 10px;
+    position: fixed;
+    left: 10px;
+    top: 170px;
+}
+#structures div {
+    clear: both;
+}
+#structures .value {
+    float: right;
+}
+#structures label {
+    cursor: pointer;
+    font-weight: bold;
+    float: left;
+}
+#structures div {
+    cursor: pointer;
+    padding: 2px 5px;
+}
+#structures div.selected {
+    background-color: #4b6174;
+}
+
+#options {
+    position: fixed;
+    left: 10px;
+    top: 250px;
+}
+
+#details {
+    position: fixed;
+    left: 10px;
+    top: 300px;
+}
+
+.ui-box {
+    padding: 5px 10px;
+    width: 160px;
+    background-color: #a2adb9;
+    color: white;
+}
+.ui-box h2 {
+    color: #4b6174;
+    font-size: 1.2em;
+}
+
+/***=Tiles***/
+#map .tile {
+    width: 19px;
+    height: 19px;
+    float: left;
+    margin: 1px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+#map .palisade {
+    background-color: #826c59;
+}
+#map .wall {
+    background-color: silver;
+}
+#map .bullwark {
+    background-color: #4b6174;
+}
+#map .grass {
+    background-color: #5c8d23;
+}
+#map .treasury {
+    background-color: #dcca53;
+}
+
+/*
+#map .undiscovered {
+    background-color: black;
+}
+#map .mine {
+    background-color: #663311;
+    cursor: default;
+}
+
+#map .rock {
+    background-color: #826c59;
+}
+#map .silver {
+    background-color: silver;
+}
+#map .gold {
+    background-color: #dcca53;
+}
+#map .air {
+    background-color: #a2adb9;
+}
+#map .small {
+    
+}*/
