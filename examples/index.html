@@ -45,7 +45,10 @@
             initGame($map);
             
             var finder = new PathFinder();
-            finder.isNode = getTile;
+            finder.isNode = function(x, y) {
+                var tile = getTile(x, y);
+                return (tile && tile.hasClass('grass'));
+            }
             finder.highlightNode = function(node, count) {
                 var tile = getTile(node.x, node.y, count);
                 tile.html(count);
